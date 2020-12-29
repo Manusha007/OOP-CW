@@ -10,7 +10,7 @@ public class PremierLeagueManager implements LeagueManager{
     static private List< FootballClub> club1 = new ArrayList<>();
     Scanner Sc1 = new Scanner(System.in);
     String ClubName, ClubLocation;
-    int ClubId, choice;
+    int ClubId, choice, numOfWins, numOfDraws, numOfDefeats, numOfScoredGoals, numOfReceivedGoals, points, numOfMatches, numOfPlayers;
 
     public void createClub(){
         
@@ -21,8 +21,24 @@ public class PremierLeagueManager implements LeagueManager{
         ClubId = Sc1.nextInt();
         System.out.println("Please Enter the Location of the club:");
         ClubLocation = Sc1.next();
+        System.out.println("Please Enter the Number of wins of the club:");
+        numOfWins = Sc1.nextInt();
+        System.out.println("Please Enter the Number of defeats of the club:");
+        numOfDefeats = Sc1.nextInt();
+        System.out.println("Please Enter the Number of draws of the club:");
+        numOfDraws = Sc1.nextInt();
+        System.out.println("Please Enter the Number of Scored Goals");
+        numOfScoredGoals = Sc1.nextInt();
+        System.out.println("Please Enter the Number of Received Goals");
+        numOfReceivedGoals = Sc1.nextInt();
+        System.out.println("Please Enter the Number of Points of the club:");
+        points = Sc1.nextInt();
+        System.out.println("Please Enter the Number of Matches");
+        numOfMatches = Sc1.nextInt();
+        System.out.println("Please Enter the Number of Players");
+        numOfPlayers = Sc1.nextInt();
 
-        SportsClub sportsClub = new FootballClub(ClubName, ClubLocation, ClubId, 3,5,6,14,23,10,12,15);
+        SportsClub sportsClub = new FootballClub(ClubName, ClubLocation, ClubId, numOfWins, numOfDefeats, numOfDraws, numOfScoredGoals, numOfReceivedGoals, points, numOfMatches, numOfPlayers);
         club1.add((FootballClub)sportsClub);
         System.out.println();
     }
@@ -59,24 +75,30 @@ public class PremierLeagueManager implements LeagueManager{
 
         for (FootballClub footballClub : club1){
             if(footballClub.getClubName().equals(name)){
-                System.out.println("No wins " + footballClub.getNumOfWins());
-                System.out.println("No draws " + footballClub.getNumOfDraws());
-                System.out.println("No loses " + footballClub.getNumOfDefeats());
-                System.out.println("No Scored Goals " + footballClub.getNumOfScoredGoals());
-                System.out.println("No Received Goals " + footballClub.getNumOfRecivedGoals());
-                System.out.println("Total Points " + footballClub.getPoints());
+                System.out.format("+------------*-----------------*------------*----------------*--------------------*-----------------*------------------------*--------------------------*------------------*-------------------+-------------------*%n");
+                System.out.format("|  Club Name |  Club Location  |   Club Id  | Number of Wins |  Number of Defeats | Number of Draws | Number of Scored Goals | Number of Received Goals | Number of Points | Number of Matches | Number of Players |%n");
+                System.out.format("+------------*-----------------*------------*----------------*--------------------*-----------------*------------------------*--------------------------*------------------*-------------------+-------------------*%n");
+                String leftAlignFormat = "| %-10s | %-15s | %-10s | %-14s | %-18s | %-15s | %-22s | %-24s | %-16s | %-17s | %-17s |%n";
+                System.out.format(leftAlignFormat, footballClub.getClubName(), footballClub.getClubLocation(), footballClub.getClubId(), footballClub.getNumOfWins(), footballClub.getNumOfDefeats(),
+                        footballClub.getNumOfDraws(), footballClub.getNumOfScoredGoals(), footballClub.getNumOfReceivedGoals(), footballClub.getPoints(), footballClub.getNumOfMatches(), footballClub.getNumOfPlayers());
+                System.out.println();
             }
         }
     }
 
     public void displayTable(){
         System.out.println("**************************************");
+        System.out.println();
+
+        System.out.format("+------------*-----------------*------------*----------------*--------------------*-----------------*------------------------*--------------------------*------------------*-------------------+-------------------*%n");
+        System.out.format("|  Club Name |  Club Location  |   Club Id  | Number of Wins |  Number of Defeats | Number of Draws | Number of Scored Goals | Number of Received Goals | Number of Points | Number of Matches | Number of Players |%n");
+        System.out.format("+------------*-----------------*------------*----------------*--------------------*-----------------*------------------------*--------------------------*------------------*-------------------+-------------------*%n");
 
         for (FootballClub list: club1){
-            System.out.println(" Club Name     : " + list.getClubName());
-            System.out.println(" Club Location : " + list.getClubLocation());
+            String leftAlignFormat = "| %-10s | %-15s | %-10s | %-14s | %-18s | %-15s | %-22s | %-24s | %-16s | %-17s | %-17s |%n";
+            System.out.printf(leftAlignFormat, list.getClubName(), list.getClubLocation(), list.getClubId(), list.getNumOfWins(), list.getNumOfDefeats(),
+                    list.getNumOfDraws(), list.getNumOfScoredGoals(), list.getNumOfReceivedGoals(), list.getPoints(), list.getNumOfMatches(), list.getNumOfPlayers());
             System.out.println();
-
         }
 
     }
@@ -88,9 +110,13 @@ public class PremierLeagueManager implements LeagueManager{
         try{
             fw = new FileWriter(file1);
             bw = new BufferedWriter(fw);
+            bw.write(String.format("+------------*-----------------*------------*----------------*--------------------*-----------------*------------------------*--------------------------*------------------*-------------------+-------------------*%n"));
+            bw.write(String.format("|  Club Name |  Club Location  |   Club Id  | Number of Wins |  Number of Defeats | Number of Draws | Number of Scored Goals | Number of Received Goals | Number of Points | Number of Matches | Number of Players |%n"));
+            bw.write(String.format("+------------*-----------------*------------*----------------*--------------------*-----------------*------------------------*--------------------------*------------------*-------------------+-------------------*%n"));
+            String leftAlignFormat2 = "| %-10s | %-15s | %-10s | %-14s | %-18s | %-15s | %-22s | %-24s | %-16s | %-17s | %-17s |%n";
             for (FootballClub items : club1){
-                bw.write(items.getClubName() + "," + items.getClubLocation() + "," + items.getClubId() +
-                        "," + items.getNumOfWins() + "," + items.getNumOfDraws() + "," + items.getNumOfScoredGoals() + "," + items.getNumOfRecivedGoals() + "," + items.getPoints() + "\n" );
+                bw.write(String.format(leftAlignFormat2, items.getClubName(), items.getClubLocation(), items.getClubId(), items.getNumOfWins(), items.getNumOfDefeats(), items.getNumOfDraws(),items.getNumOfScoredGoals(),
+                        items.getNumOfReceivedGoals(), items.getPoints(), items.getNumOfMatches(), items.getNumOfPlayers()));
             }
             bw.flush();
         }catch (IOException exception){
@@ -131,6 +157,11 @@ public class PremierLeagueManager implements LeagueManager{
     }
 
     public void quit(){
+        System.out.println("\n\n******        +--------------------+          ******");
+        System.out.println(" Thank you for using the Football Management System");
+        System.out.println("\t\t\tExiting Program...");
+        System.out.println("                  **-------** ");
         System.exit(0);
+
     }
 }

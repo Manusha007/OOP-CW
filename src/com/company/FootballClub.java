@@ -6,18 +6,18 @@ public class FootballClub extends SportsClub {
     private int NumOfDraws;
     private int NumOfDefeats;
     private int NumOfScoredGoals;
-    private int NumOfRecivedGoals;
+    private int NumOfReceivedGoals;
     private int Points;
     private int NumOfMatches;
     private int NumOfPlayers;
 
-    public FootballClub( String ClubName, String ClubLocation, int ClubId , int numOfWins, int numOfDraws, int numOfDefeats, int numOfScoredGoals, int numOfRecivedGoals, int points, int numOfMatches, int numOfPlayers) {
+    public FootballClub(String ClubName, String ClubLocation, int ClubId , int numOfWins, int numOfDraws, int numOfDefeats, int numOfScoredGoals, int numOfReceivedGoals, int points, int numOfMatches, int numOfPlayers) {
         super(ClubName, ClubLocation, ClubId);
         this.NumOfWins = numOfWins;
         this.NumOfDraws = numOfDraws;
         this.NumOfDefeats = numOfDefeats;
         this.NumOfScoredGoals = numOfScoredGoals;
-        this.NumOfRecivedGoals = numOfRecivedGoals;
+        this.NumOfReceivedGoals = numOfReceivedGoals;
         this.Points = points;
         this.NumOfMatches = numOfMatches;
         this.NumOfPlayers = numOfPlayers;
@@ -55,12 +55,12 @@ public class FootballClub extends SportsClub {
         this.NumOfScoredGoals = numOfScoredGoals;
     }
 
-    public int getNumOfRecivedGoals() {
-        return NumOfRecivedGoals;
+    public int getNumOfReceivedGoals() {
+        return NumOfReceivedGoals;
     }
 
-    public void setNumOfRecivedGoals(int numOfRecivedGoals) {
-        this.NumOfRecivedGoals = numOfRecivedGoals;
+    public void setNumOfReceivedGoals(int numOfReceivedGoals) {
+        this.NumOfReceivedGoals = numOfReceivedGoals;
     }
 
     public int getPoints() {
